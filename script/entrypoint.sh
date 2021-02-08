@@ -72,6 +72,8 @@ if [ "$AIRFLOW__CORE__EXECUTOR" != "SequentialExecutor" ]; then
     POSTGRES_ENDPOINT=$(echo -n "$AIRFLOW__CORE__SQL_ALCHEMY_CONN" | cut -d '/' -f3 | sed -e 's,.*@,,')
     POSTGRES_HOST=$(echo -n "$POSTGRES_ENDPOINT" | cut -d ':' -f1)
     POSTGRES_PORT=$(echo -n "$POSTGRES_ENDPOINT" | cut -d ':' -f2)
+    echo POSTGRES_HOST = $POSTGRES_HOST
+    echo POSTGRES_PORT = $POSTGRES_PORT
   fi
 
   wait_for_port "Postgres" "$POSTGRES_HOST" "$POSTGRES_PORT"

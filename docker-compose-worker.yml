@@ -9,12 +9,15 @@ services:
         volumes:
             - ./dags:/usr/local/airflow/dags
             - ./requirements.txt:/requirements.txt
-            - ./config/worker/airflow.cfg:/usr/local/airflow/airflow.cfg 
+            - ./config/worker/airflow.cfg:/usr/local/airflow/airflow.cfg
+            - ./script/entrypoint.sh:/entrypoint.sh
             # Uncomment to include custom plugins
             # - ./plugins:/usr/local/airflow/plugins
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
+            - POSTGRES_HOST=3.16.130.161
+            - POSTGRES_PORT=5432
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
