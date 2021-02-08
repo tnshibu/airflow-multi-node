@@ -34,7 +34,7 @@ services:
         volumes:
             - ./dags:/usr/local/airflow/dags
             - ./requirements.txt:/requirements.txt
-            - ./config/airflow.cfg:/usr/local/airflow/airflow.cfg 
+            - ./config/master/airflow.cfg:/usr/local/airflow/airflow.cfg 
             # Uncomment to include custom plugins
             # - ./plugins:/usr/local/airflow/plugins
         ports:
@@ -57,7 +57,7 @@ services:
         volumes:
             - ./dags:/usr/local/airflow/dags
             - ./requirements.txt:/requirements.txt
-            - ./config/airflow.cfg:/usr/local/airflow/airflow.cfg 
+            - ./config/master/airflow.cfg:/usr/local/airflow/airflow.cfg 
             # Uncomment to include custom plugins
             # - ./plugins:/usr/local/airflow/plugins
         environment:
