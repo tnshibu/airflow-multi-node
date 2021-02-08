@@ -31,9 +31,6 @@ services:
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
             - REDIS_PASSWORD=redispass
-            - AWS_ACCESS_KEY_ID=
-            - AWS_SECRET_ACCESS_KEY=
-            - AWS_DEFAULT_REGION=us-east-1
         volumes:
             - ./dags:/usr/local/airflow/dags
             - ./requirements.txt:/requirements.txt
@@ -41,28 +38,13 @@ services:
             # Uncomment to include custom plugins
             # - ./plugins:/usr/local/airflow/plugins
         ports:
-            - "8081:8080"
+            - "8080:8080"
         command: webserver
         healthcheck:
             test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
             interval: 30s
             timeout: 30s
             retries: 3
-
-    flower:
-        image: puckel/docker-airflow:latest
-        restart: always
-        depends_on:
-            - redis
-        environment:
-            - EXECUTOR=Celery
-            - REDIS_PASSWORD=redispass
-            - AWS_ACCESS_KEY_ID=
-            - AWS_SECRET_ACCESS_KEY=
-            - AWS_DEFAULT_REGION=us-east-1
-        ports:
-            - "5555:5555"
-        command: flower
 
     scheduler:
         image: puckel/docker-airflow:latest
@@ -86,9 +68,6 @@ services:
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
             - REDIS_PASSWORD=redispass
-            - AWS_ACCESS_KEY_ID=
-            - AWS_SECRET_ACCESS_KEY=
-            - AWS_DEFAULT_REGION=us-east-1
         command: scheduler
 
 volumes: 
