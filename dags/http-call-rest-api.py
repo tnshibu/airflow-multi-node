@@ -24,7 +24,7 @@ session = settings.Session()
 conn_name = session.query(Connection).filter(Connection.conn_id == conn.conn_id).first()
 
 if str(conn_name):
-    session.delete(conn_name)    
+    #session.delete(conn_name)    
     session.add(conn)
     session.commit()  
     session.close()
