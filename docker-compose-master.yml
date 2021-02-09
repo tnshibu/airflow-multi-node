@@ -73,6 +73,17 @@ services:
             - POSTGRES_DB=airflow
             - REDIS_PASSWORD=redispass
         command: scheduler
+    flower:
+        image: puckel/docker-airflow:latest
+        restart: always
+        depends_on:
+            - redis
+        environment:
+            - EXECUTOR=Celery
+            - REDIS_PASSWORD=redispass
+        ports:
+            - "5555:5555"
+        command: flower
 
 volumes: 
     pg_data_airflow:
