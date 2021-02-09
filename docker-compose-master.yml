@@ -15,8 +15,8 @@ services:
             - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
             - "5432:5432"
-        volumes:
-            - pg_data_airflow:/var/lib/postgresql/data/pgdata
+        #volumes:
+        #    - pg_data_airflow:/var/lib/postgresql/data/pgdata
 
     webserver:
         image: puckel/docker-airflow:latest
