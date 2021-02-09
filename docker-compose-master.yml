@@ -82,6 +82,10 @@ services:
             - REDIS_PASSWORD=redispass
         ports:
             - "5555:5555"
+        volumes:
+            - ./dags:/usr/local/airflow/dags
+            - ./requirements.txt:/requirements.txt
+            - ./config/master/airflow.cfg:/usr/local/airflow/airflow.cfg 
         #command: flower
         command: ["flower", "--broker=redis://3.138.101.106:6379/0", "--port=5555"]  
 
