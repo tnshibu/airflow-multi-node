@@ -38,3 +38,6 @@ t2 = PythonOperator(
         dag=hello_dag
 )
 
+t1 >> t2
+
+
