@@ -98,6 +98,6 @@ services:
 #      ports:  
 #        - 5555:5555
 
-volumes: 
-    pg_data_airflow:
-        external: true
+#volumes: 
+#    pg_data_airflow:
+#        external: true
