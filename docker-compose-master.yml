@@ -79,11 +79,11 @@ services:
         depends_on:
             - redis
         environment:
-            - EXECUTOR=Celery
             - REDIS_PASSWORD=redispass
         ports:
             - "5555:5555"
-        command: flower
+        #command: flower
+        command: ["flower", "--broker=redis://3.138.101.106:6379/0", "--port=5555"]  
 
 volumes: 
     pg_data_airflow:
