@@ -19,10 +19,9 @@ def hello_world_2():
 
 hello_dag = DAG(
         "lesson1.excercise1",
-        start_date=datetime.datetime.now(),
+        start_date=datetime.datetime.now() - timedelta(days=1),
         schedule_interval='@daily',
         description='A simple hello world DAG'
-
 )
 
 t1 = PythonOperator(
