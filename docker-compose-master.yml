@@ -73,21 +73,31 @@ services:
             - POSTGRES_DB=airflow
             - REDIS_PASSWORD=redispass
         command: scheduler
-    flower:
-        image: puckel/docker-airflow:latest
-        restart: always
-        depends_on:
-            - redis
-        environment:
-            - REDIS_PASSWORD=redispass
-        ports:
-            - "5555:5555"
-        volumes:
-            - ./dags:/usr/local/airflow/dags
-            - ./requirements.txt:/requirements.txt
-            - ./config/master/airflow.cfg:/usr/local/airflow/airflow.cfg 
-        #command: flower
-        command: ["flower", "--broker=redis://localhost:6379/0", "--port=5555"]  
+#    flower:
+#        image: puckel/docker-airflow:latest
+#        restart: always
+#        depends_on:
+#            - redis
+#        environment:
+#            - REDIS_PASSWORD=redispass
+#        ports:
+#            - "5555:5555"
+#        volumes:
+#            - ./dags:/usr/local/airflow/dags
+#            - ./requirements.txt:/requirements.txt
+#            - ./config/master/airflow.cfg:/usr/local/airflow/airflow.cfg 
+#        #command: flower
+#        command: ["flower", "--broker=redis://localhost:6379/0", "--port=5555"]  
+
+
+    # docker-compose.yaml
+    flower:  
+      image: mher/flower
+      environment:
+        - CELERY_BROKER_URL=redis://localhost:6379/0
+        - FLOWER_PORT=5555
+      ports:  
+        - 5555:5555
 
 volumes: 
     pg_data_airflow:
