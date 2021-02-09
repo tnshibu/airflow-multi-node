@@ -1,0 +1,6 @@
+version: '2.1'
+services:
+    app:
+        image: singhavinash857/employee_app:1
+        ports:
+            - "8181:8181"

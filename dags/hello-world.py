@@ -5,7 +5,6 @@ import airflow
 import logging
 
 from airflow import DAG
-from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 
 def hello_world_1():
@@ -16,9 +15,12 @@ def hello_world_2():
     logging.info("Hello World 2")
     logging.info(f"9 -2 = {9-2}")
 
+args = {
+    'owner' : 'ofss'
+}
 
 hello_dag = DAG(
-        "lesson1.excercise1",
+        "Hello.World",
         start_date=datetime.datetime.now() - timedelta(days=1),
         schedule_interval='@daily',
         description='A simple hello world DAG'
@@ -30,7 +32,6 @@ t1 = PythonOperator(
         dag=hello_dag
 )
 
-
 t2 = PythonOperator(
         task_id="hello_world_task_2",
         python_callable=hello_world_2,
@@ -38,5 +39,3 @@ t2 = PythonOperator(
 )
 
 t1 >> t2
-
-
