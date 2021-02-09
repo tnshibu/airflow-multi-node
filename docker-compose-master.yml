@@ -19,7 +19,7 @@ services:
         #    - pg_data_airflow:/var/lib/postgresql/data/pgdata
 
     webserver:
-        image: puckel/docker-airflow:1.10.1
+        image: puckel/docker-airflow:1.10.9
         # build:
         #     context: .
         #     dockerfile: Dockerfile
@@ -51,7 +51,7 @@ services:
             retries: 3
 
     scheduler:
-        image: puckel/docker-airflow:1.10.1
+        image: puckel/docker-airflow:1.10.9
         # build:
         #     context: .
         #     dockerfile: Dockerfile
@@ -74,7 +74,7 @@ services:
             - REDIS_PASSWORD=redispass
         command: scheduler
     flower:
-        image: puckel/docker-airflow:1.10.1
+        image: puckel/docker-airflow:1.10.9
         restart: always
         depends_on:
             - redis
