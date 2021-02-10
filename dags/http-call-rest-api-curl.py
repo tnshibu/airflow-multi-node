@@ -18,7 +18,7 @@ from airflow.contrib.operators.slack_webhook_operator import SlackWebhookOperato
 from airflow import settings
 from airflow.models import Connection
 
-BASE_URL='http://192.168.1.7:8181/employee'    
+BASE_URL='http://18.222.14.7:8181/employee'    
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -61,6 +61,60 @@ get_employee_by_id_task = BashOperator(
     xcom_push=True,
     dag=dag
 )
+get_employee_by_id_task1 = BashOperator(
+    task_id='get-employee-by-id1',
+    bash_command='curl -X GET {BASE_URL}/get-by-id/1/employee'.format(BASE_URL = BASE_URL),
+    xcom_push=True,
+    dag=dag
+)
+get_employee_by_id_task2 = BashOperator(
+    task_id='get-employee-by-id2',
+    bash_command='curl -X GET {BASE_URL}/get-by-id/2/employee'.format(BASE_URL = BASE_URL),
+    xcom_push=True,
+    dag=dag
+)
+get_employee_by_id_task3 = BashOperator(
+    task_id='get-employee-by-id3',
+    bash_command='curl -X GET {BASE_URL}/get-by-id/3/employee'.format(BASE_URL = BASE_URL),
+    xcom_push=True,
+    dag=dag
+)
+get_employee_by_id_task4 = BashOperator(
+    task_id='get-employee-by-id4',
+    bash_command='curl -X GET {BASE_URL}/get-by-id/4/employee'.format(BASE_URL = BASE_URL),
+    xcom_push=True,
+    dag=dag
+)
+get_employee_by_id_task5 = BashOperator(
+    task_id='get-employee-by-id5',
+    bash_command='curl -X GET {BASE_URL}/get-by-id/5/employee'.format(BASE_URL = BASE_URL),
+    xcom_push=True,
+    dag=dag
+)
+get_employee_by_id_task6 = BashOperator(
+    task_id='get-employee-by-id6',
+    bash_command='curl -X GET {BASE_URL}/get-by-id/6/employee'.format(BASE_URL = BASE_URL),
+    xcom_push=True,
+    dag=dag
+)
+get_employee_by_id_task7 = BashOperator(
+    task_id='get-employee-by-id7',
+    bash_command='curl -X GET {BASE_URL}/get-by-id/7/employee'.format(BASE_URL = BASE_URL),
+    xcom_push=True,
+    dag=dag
+)
+get_employee_by_id_task8 = BashOperator(
+    task_id='get-employee-by-id8',
+    bash_command='curl -X GET {BASE_URL}/get-by-id/8/employee'.format(BASE_URL = BASE_URL),
+    xcom_push=True,
+    dag=dag
+)
+get_employee_by_id_task9 = BashOperator(
+    task_id='get-employee-by-id9',
+    bash_command='curl -X GET {BASE_URL}/get-by-id/9/employee'.format(BASE_URL = BASE_URL),
+    xcom_push=True,
+    dag=dag
+)
 
 jsondata='{"name" : "Vikram3"}'
 save_employee_task = BashOperator(
@@ -70,5 +124,6 @@ save_employee_task = BashOperator(
     dag=dag
 )
 
-health_check_task >> save_employee_task >> get_all_employee_task
-health_check_task >> save_employee_task >> get_employee_by_id_task
+get_employee_by_id_task1 >> get_employee_by_id_task2 >> get_employee_by_id_task3 >> get_employee_by_id_task4 >> get_employee_by_id_task5 >> get_employee_by_id_task6 >> get_employee_by_id_task7 >> get_employee_by_id_task8 >> get_employee_by_id_task9
+#health_check_task >> save_employee_task >> get_all_employee_task
+#health_check_task >> save_employee_task >> get_employee_by_id_task

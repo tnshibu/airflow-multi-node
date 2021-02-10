@@ -16,12 +16,12 @@ services:
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
-            - POSTGRES_HOST=3.15.144.185
+            - POSTGRES_HOST=18.191.88.89
             - POSTGRES_PORT=5432
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
-            - REDIS_HOST=3.15.144.185
+            - REDIS_HOST=18.191.88.89
             - REDIS_PORT=6379
             - REDIS_PASSWORD=redispass
         command: worker
