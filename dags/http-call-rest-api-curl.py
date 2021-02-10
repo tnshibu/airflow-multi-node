@@ -18,7 +18,7 @@ from airflow.contrib.operators.slack_webhook_operator import SlackWebhookOperato
 from airflow import settings
 from airflow.models import Connection
 
-BASE_URL='http://192.168.1.7:8181/employee'    
+BASE_URL='http://18.222.14.7:8181/employee'    
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
