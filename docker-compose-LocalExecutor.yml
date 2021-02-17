@@ -19,6 +19,7 @@ services:
         environment:
             - LOAD_EX=n
             - EXECUTOR=Local
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
         logging:
             options:
                 max-size: 10m
@@ -34,3 +35,25 @@ services:
             interval: 30s
             timeout: 30s
             retries: 3
+            
+    scheduler:
+        image: puckel/docker-airflow:1.10.9
+        restart: always
+        depends_on:
+            - webserver
+        volumes:
+            - ./dags:/usr/local/airflow/dags
+            - ./requirements.txt:/requirements.txt
+            - ./config/master/airflow.cfg:/usr/local/airflow/airflow.cfg 
+            # Uncomment to include custom plugins
+            # - ./plugins:/usr/local/airflow/plugins
+        environment:
+            - LOAD_EX=n
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Local
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+            - REDIS_PASSWORD=redispass
+            - APP_SERVER_HOST=${APP_SERVER_HOST}
+        command: scheduler
