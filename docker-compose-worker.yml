@@ -24,4 +24,5 @@ services:
             - REDIS_HOST=${MASTER_VM_HOST}
             - REDIS_PORT=6379
             - REDIS_PASSWORD=redispass
+            - APP_SERVER_HOST=${APP_SERVER_HOST}
         command: worker
