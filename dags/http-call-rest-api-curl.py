@@ -17,6 +17,7 @@ from airflow.hooks.base_hook import BaseHook
 from airflow.contrib.operators.slack_webhook_operator import SlackWebhookOperator
 from airflow import settings
 from airflow.models import Connection
+import os
 
 
 BASE_URL='http://'+os.getenv("APP_SERVER_HOST")+':8181/employee'    
