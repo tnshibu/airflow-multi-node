@@ -40,7 +40,6 @@ services:
             - ./dags:/usr/local/airflow/dags
             - ./requirements.txt:/requirements.txt
             - ./config/master/airflow.cfg:/usr/local/airflow/airflow.cfg 
-            - ./script/entrypoint.sh:/entrypoint.sh
             # Uncomment to include custom plugins
             # - ./plugins:/usr/local/airflow/plugins
         ports:
