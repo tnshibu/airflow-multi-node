@@ -73,6 +73,7 @@ services:
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
             - REDIS_PASSWORD=redispass
+            - APP_SERVER_HOST=${APP_SERVER_HOST}
         command: scheduler
     flower:
         image: puckel/docker-airflow:1.10.9
