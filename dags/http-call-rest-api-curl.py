@@ -20,8 +20,8 @@ from airflow.models import Connection
 import os
 
 #master_host = os.getenv("APP_SERVER_HOST")
-#BASE_URL='http://'+str(os.getenv("APP_SERVER_HOST"))+':8181/employee' 
-BASE_URL='http://18.220.29.158:8181/employee'   
+BASE_URL='http://'+str(os.getenv("APP_SERVER_HOST"))+':8181/employee' 
+#BASE_URL='http://18.220.29.158:8181/employee'   
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
