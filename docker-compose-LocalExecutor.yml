@@ -1,4 +1,4 @@
-version: '3.7'
+version: '2.1'
 services:
     postgres:
         image: postgres:9.6
@@ -24,8 +24,8 @@ services:
             options:
                 max-size: 10m
                 max-file: "3"
-        #volumes:
-        #    - ./dags:/usr/local/airflow/dags
+        volumes:
+            - ./dags:/usr/local/airflow/dags
             # - ./plugins:/usr/local/airflow/plugins
         ports:
             - "8080:8080"
