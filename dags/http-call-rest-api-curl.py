@@ -127,7 +127,9 @@ save_employee_task = BashOperator(
     dag=dag
 )
 
-
+def print_file_content(**context):
+   print("AAAAAAAAAAAAAAAAAAAAAA"+BASE_URL)
+   
 read_file_content_task = PythonOperator(
          task_id='read_file_content_task_local_id',
          python_callable=print_file_content,
@@ -136,8 +138,7 @@ read_file_content_task = PythonOperator(
          retry_delay=timedelta(seconds=1)
      )
      
-def print_file_content(**context):
-   print("AAAAAAAAAAAAAAAAAAAAAA"+BASE_URL)
+
      
 read_file_content_task >> get_employee_by_id_task1 >> get_employee_by_id_task2 >> get_employee_by_id_task3 >> get_employee_by_id_task4 >> get_employee_by_id_task5 >> get_employee_by_id_task6 >> get_employee_by_id_task7 >> get_employee_by_id_task8 >> get_employee_by_id_task9
 #health_check_task >> save_employee_task >> get_all_employee_task
