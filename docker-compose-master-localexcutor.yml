@@ -29,6 +29,8 @@ services:
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
             - REDIS_PASSWORD=redispass
+            - APP_SERVER_HOST=${APP_SERVER_HOST}
+
         volumes:
             - ./dags:/usr/local/airflow/dags
             - ./requirements.txt:/requirements.txt
@@ -66,8 +68,9 @@ services:
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
             - REDIS_PASSWORD=redispass
+            - APP_SERVER_HOST=${APP_SERVER_HOST}
         command: scheduler
-        
+
     app:
         image: singhavinash857/employee_app:1
         ports:
