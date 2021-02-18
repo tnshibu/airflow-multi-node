@@ -126,7 +126,7 @@ get_employee_by_id_task9 = BashOperator(
 #     dag=dag
 # )
      
-get_employee_by_id_task1 >> [get_employee_by_id_task2, get_employee_by_id_task3, get_employee_by_id_task4, get_employee_by_id_task5, get_employee_by_id_task6, get_employee_by_id_task7, get_employee_by_id_task8]
+health_check_task >> [get_employee_by_id_task1, get_employee_by_id_task2, get_employee_by_id_task3, get_employee_by_id_task4, get_employee_by_id_task5, get_employee_by_id_task6, get_employee_by_id_task7, get_employee_by_id_task8]
 
 
 #  >> get_employee_by_id_task9
