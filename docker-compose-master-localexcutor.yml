@@ -67,6 +67,11 @@ services:
             - POSTGRES_DB=airflow
             - REDIS_PASSWORD=redispass
         command: scheduler
+        
+    app:
+        image: singhavinash857/employee_app:1
+        ports:
+            - "8181:8181"
     # flower:
     #     image: puckel/docker-airflow:1.10.9
     #     restart: always
