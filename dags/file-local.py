@@ -14,6 +14,8 @@ from airflow.operators.python_operator import PythonOperator
 from airflow import settings
 from airflow.models import Connection
 from airflow.utils.email import send_email
+from airflow.hooks.base_hook import BaseHook
+from airflow.contrib.operators.slack_webhook_operator import SlackWebhookOperator
 
 SLACK_CONN_ID = 'slack-notification'
 SLACK_CONN_ID = 'slack-notification'
