@@ -17,8 +17,11 @@ from airflow.hooks.base_hook import BaseHook
 from airflow.contrib.operators.slack_webhook_operator import SlackWebhookOperator
 from airflow import settings
 from airflow.models import Connection
+import os
 
-BASE_URL='http://18.222.14.7:8181/employee'    
+#master_host = os.getenv("APP_SERVER_HOST")
+BASE_URL='http://'+str(os.getenv("APP_SERVER_HOST"))+':8181/employee' 
+#BASE_URL='http://18.220.29.158:8181/employee'   
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -124,6 +127,19 @@ save_employee_task = BashOperator(
     dag=dag
 )
 
-get_employee_by_id_task1 >> get_employee_by_id_task2 >> get_employee_by_id_task3 >> get_employee_by_id_task4 >> get_employee_by_id_task5 >> get_employee_by_id_task6 >> get_employee_by_id_task7 >> get_employee_by_id_task8 >> get_employee_by_id_task9
+def print_file_content(**context):
+   print("AAAAAAAAAAAAAAAAAAAAAA"+BASE_URL)
+   
+read_file_content_task = PythonOperator(
+         task_id='read_file_content_task_local_id',
+         python_callable=print_file_content,
+         provide_context=True,
+         retries=10,
+         retry_delay=timedelta(seconds=1)
+     )
+     
+
+     
+read_file_content_task >> get_employee_by_id_task1 >> get_employee_by_id_task2 >> get_employee_by_id_task3 >> get_employee_by_id_task4 >> get_employee_by_id_task5 >> get_employee_by_id_task6 >> get_employee_by_id_task7 >> get_employee_by_id_task8 >> get_employee_by_id_task9
 #health_check_task >> save_employee_task >> get_all_employee_task
 #health_check_task >> save_employee_task >> get_employee_by_id_task

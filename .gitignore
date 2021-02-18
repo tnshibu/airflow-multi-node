@@ -1,0 +1,12 @@
+credentials.tf
+credentials.txt
+
+*.pem
+*.ppk
+*.rnd
+
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+__pycache__
