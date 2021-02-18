@@ -3,6 +3,7 @@ import logging
 import os
 import shutil
 import json
+import logging
 
 from pathlib import Path
 from airflow import DAG
@@ -132,14 +133,13 @@ def print_file_content(**context):
     foldername = "/processed"
     hook = FSHook(conn_id)
     parentPath = str(Path(hook.get_path()).parent)
-    print(parentPath)
     if not os.path.exists(parentPath + foldername):
 	    os.makedirs(parentPath +  foldername)
 
     for file in os.listdir(hook.get_path()):
         if file.endswith(".txt"):
             with open(hook.get_path()+"/"+file, 'r') as fp:
-                print(fp.read())
+                logging.info(fp.read())
                 shutil.move(hook.get_path()  +"/" + file  , parentPath + foldername + "/" + file)
         else:
             os.remove(os.path.join(hook.get_path(), file))
