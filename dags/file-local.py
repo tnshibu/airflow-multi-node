@@ -13,6 +13,7 @@ from airflow.contrib.sensors.file_sensor import FileSensor
 from airflow.operators.python_operator import PythonOperator
 from airflow import settings
 from airflow.models import Connection
+from airflow.utils.email import send_email
 
 SLACK_CONN_ID = 'slack-notification'
 SLACK_CONN_ID = 'slack-notification'
